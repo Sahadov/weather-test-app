@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  weather-app-test
+//  WeatherAppTest
 //
 //  Created by Dmitry Volkov on 28/05/2025.
 //
