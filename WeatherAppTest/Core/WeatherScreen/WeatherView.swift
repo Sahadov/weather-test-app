@@ -7,84 +7,24 @@
 
 import SwiftUI
 
+
 struct WeatherView: View {
-    @State var searchCity: String = ""
+    @StateObject private var vm: WeatherViewModel = WeatherViewModel(city: "Moscow")
+    @State private var searchCity: String = ""
     
+    init(city: String) {
+        _vm = StateObject(wrappedValue: WeatherViewModel(city: city))
+    }
     
     var body: some View {
         VStack {
-           Text("Прогноз погоды")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundStyle(.white)
-                .padding(.vertical)
-            
+            viewTitle
             Spacer()
-            
-            Text("+5 ℃")
-                .foregroundStyle(Color.green)
-                .fontWeight(.bold)
-                .font(.custom("Helvetica Neue", size: 70))
-            
-            Text("Сегодня 28 мая")
-                .foregroundStyle(.white)
-            
+            currentWeather
             Spacer()
-            
-            TextField("Ввведите город", text: $searchCity)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.white)
-                )
-                .padding()
-            
+            cityTextField
             Spacer()
-            
-            VStack {
-                HStack {
-                    Text("Завтра 28 мая")
-                        .foregroundStyle(.white)
-                    Text("+5 ℃")
-                        .foregroundStyle(Color.green)
-                        .fontWeight(.bold)
-                        .font(.title2)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("28 мая")
-                        .foregroundStyle(.white)
-                    Text("+5 ℃")
-                        .foregroundStyle(Color.green)
-                        .fontWeight(.bold)
-                        .font(.title2)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                HStack {
-                    Text("28 мая")
-                        .foregroundStyle(.white)
-                    Text("+5 ℃")
-                        .foregroundStyle(Color.green)
-                        .fontWeight(.bold)
-                        .font(.title2)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                HStack {
-                    Text("28 мая")
-                        .foregroundStyle(.white)
-                    Text("+5 ℃")
-                        .foregroundStyle(Color.green)
-                        .fontWeight(.bold)
-                        .font(.title2)
-                    Spacer()
-                }
-                .padding(.horizontal)
-            }
-            
+            futureweather
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -93,5 +33,51 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView()
+    WeatherView(city: "Moscow")
 }
+
+extension WeatherView {
+    var viewTitle: some View {
+        Text("Прогноз погоды")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundStyle(.white)
+            .padding(.vertical)
+    }
+    
+    var currentWeather: some View {
+        Group {
+            if let weather = vm.weather {
+                CurrentWeatherView(temperature: weather.current.temp_c, location: weather.location.name, date: "Сегодня 28 мая")
+            } else {
+                Text("Загрузка погоды...")
+                    .foregroundColor(.gray)
+            }
+        }
+    }
+    
+    var cityTextField: some View {
+        TextField("Ввведите город", text: $searchCity)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.white)
+            )
+            .padding()
+            .onSubmit {
+                vm.updateWeather(for: searchCity)
+                searchCity = ""
+            }
+    }
+    
+    var futureweather: some View {
+        VStack {
+            WeatherRow(date: "Завтра 28 мая", temperature: 5)
+            WeatherRow(date: "28 мая", temperature: 5)
+            WeatherRow(date: "28 мая", temperature: 5)
+            WeatherRow(date: "28 мая", temperature: 5)
+        }
+    }
+}
+
+

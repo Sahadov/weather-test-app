@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		D103386A2DE79D160006BC77 /* WeatherAppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1C19B2E2DE7A1E4002EC8C8 /* WeatherAppTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = WeatherAppTest.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -42,6 +43,11 @@
 			children = (
 				D103386A2DE79D160006BC77 /* WeatherAppTest.app */,
 			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D1C19B392DE7A1E4002EC8C8 /* Products */ = {
+			isa = PBXGroup;
 			name = Products;
 			sourceTree = "<group>";
 		};
@@ -97,6 +103,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D103386B2DE79D160006BC77 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D1C19B392DE7A1E4002EC8C8 /* Products */;
+					ProjectRef = D1C19B2E2DE7A1E4002EC8C8 /* WeatherAppTest.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D10338692DE79D160006BC77 /* WeatherAppTest */,
