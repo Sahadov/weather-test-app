@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class WeatherService {
     @Published var weather: Weather?
@@ -14,35 +15,18 @@ class WeatherService {
     
     init(city: String) {
         getData(city: city)
-        print(getNextFiveDates())
     }
     
     func getData(city: String) {
-        guard let url = URL(string: "https://api.weatherapi.com/v1/current.json?key=79692111fc51490e8ba21318230805&q=\(city)&aqi=no")
+        guard let url = URL(string: "https://api.weatherapi.com/v1/forecast.json?key=79692111fc51490e8ba21318230805&q=\(city)&days=5&aqi=no&alerts=no")
         else { return }
         
         weatherSubscription = NetworkingManager.download(url: url)
             .decode(type: Weather.self, decoder: JSONDecoder())
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedWeather in
                 self?.weather = returnedWeather
+                print(returnedWeather)
                 self?.weatherSubscription?.cancel()
             })
-    }
-    
-    func getNextFiveDates() -> [String] {
-        let calendar = Calendar.current
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        var dates: [String] = []
-        
-        for i in 0..<5 {
-            if let nextDate = calendar.date(byAdding: .day, value: i, to: Date()) {
-                let formattedDate = formatter.string(from: nextDate)
-                dates.append(formattedDate)
-            }
-        }
-        
-        return dates
     }
 }
