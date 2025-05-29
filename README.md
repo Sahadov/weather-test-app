@@ -8,11 +8,11 @@
 </p>
 
 <p align="center">
-<img src="https://github.com/Sahadov/weather-test-app/blob/main/image1.jpeg" width="140" /> 
-<img src="https://github.com/Sahadov/weather-test-app/blob/main/image2.jpeg" width="140" />  
-<img src="https://github.com/Sahadov/weather-test-app/blob/main/image3.jpeg" width="140" /> 
-<img src="https://github.com/Sahadov/weather-test-app/blob/main/image4.jpeg" width="140" /> 
-<img src="https://github.com/Sahadov/weather-test-app/blob/main/image5.jpeg" width="140" /> 
+<img src="https://github.com/Sahadov/weather-test-app/blob/main/Images/image1.jpeg" width="140" /> 
+<img src="https://github.com/Sahadov/weather-test-app/blob/main/Images/image2.jpeg" width="140" />  
+<img src="https://github.com/Sahadov/weather-test-app/blob/main/Images/image3.jpeg" width="140" /> 
+<img src="https://github.com/Sahadov/weather-test-app/blob/main/Images/image4.jpeg" width="140" /> 
+<img src="https://github.com/Sahadov/weather-test-app/blob/main/Images/image5.jpeg" width="140" /> 
 </p>
 
 # WEATHER APP
