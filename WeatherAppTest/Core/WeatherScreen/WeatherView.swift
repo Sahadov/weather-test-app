@@ -50,7 +50,7 @@ extension WeatherView {
     var currentWeather: some View {
         Group {
             if let weather = vm.weather {
-                CurrentWeatherView(temperature: weather.current.tempC, location: weather.location.name, date: "Сегодня 28 мая")
+                CurrentWeatherView(temperature: weather.current.tempC, location: weather.location.name, date: "Сегодня \(weather.forecast.forecastDay[0].date.formattedDateToRussian() ?? "")")
             } else {
                 Text("Загрузка погоды...")
                     .foregroundColor(.gray)
@@ -92,11 +92,11 @@ extension WeatherView {
         Group {
             if let weather = vm.weather {
                 VStack(spacing: 20) {
-                    WeatherRow(date: weather.forecast.forecastDay[0].date.formattedDateToRussian() ?? "Завтра", minTemperature: weather.forecast.forecastDay[0].day.minTempC, avgTemperature: weather.forecast.forecastDay[0].day.avgTempC, maxTemperature: weather.forecast.forecastDay[0].day.maxTempC)
+                    WeatherRow(date: weather.forecast.forecastDay[0].date.formattedDateToRussian() ?? "Сегодня", minTemperature: weather.forecast.forecastDay[0].day.minTempC, avgTemperature: weather.forecast.forecastDay[0].day.avgTempC, maxTemperature: weather.forecast.forecastDay[0].day.maxTempC)
                     
-                    WeatherRow(date: weather.forecast.forecastDay[1].date.formattedDateToRussian() ?? "Послезавтра", minTemperature: weather.forecast.forecastDay[1].day.minTempC, avgTemperature: weather.forecast.forecastDay[1].day.avgTempC, maxTemperature: weather.forecast.forecastDay[1].day.maxTempC)
+                    WeatherRow(date: weather.forecast.forecastDay[1].date.formattedDateToRussian() ?? "Завтра", minTemperature: weather.forecast.forecastDay[1].day.minTempC, avgTemperature: weather.forecast.forecastDay[1].day.avgTempC, maxTemperature: weather.forecast.forecastDay[1].day.maxTempC)
                     
-                    WeatherRow(date: weather.forecast.forecastDay[2].date.formattedDateToRussian() ?? "Через 2 дня", minTemperature: weather.forecast.forecastDay[2].day.minTempC, avgTemperature: weather.forecast.forecastDay[2].day.avgTempC, maxTemperature: weather.forecast.forecastDay[2].day.maxTempC)
+                    WeatherRow(date: weather.forecast.forecastDay[2].date.formattedDateToRussian() ?? "Послезавтра", minTemperature: weather.forecast.forecastDay[2].day.minTempC, avgTemperature: weather.forecast.forecastDay[2].day.avgTempC, maxTemperature: weather.forecast.forecastDay[2].day.maxTempC)
                 }
             } else {
                 Text("Загрузка погоды...")

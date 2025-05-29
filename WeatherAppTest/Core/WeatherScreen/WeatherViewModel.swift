@@ -30,7 +30,6 @@ class WeatherViewModel: ObservableObject {
         weatherService.$weather
             .sink { [weak self] (receivedWeather) in
                 self?.weather = receivedWeather
-                print(receivedWeather)
             }
             .store(in: &cancellables)
     }

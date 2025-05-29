@@ -25,7 +25,6 @@ class WeatherService {
             .decode(type: Weather.self, decoder: JSONDecoder())
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedWeather in
                 self?.weather = returnedWeather
-                print(returnedWeather)
                 self?.weatherSubscription?.cancel()
             })
     }
