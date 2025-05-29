@@ -14,6 +14,7 @@ class WeatherService {
     
     init(city: String) {
         getData(city: city)
+        print(getNextFiveDates())
     }
     
     func getData(city: String) {
@@ -26,5 +27,22 @@ class WeatherService {
                 self?.weather = returnedWeather
                 self?.weatherSubscription?.cancel()
             })
+    }
+    
+    func getNextFiveDates() -> [String] {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        var dates: [String] = []
+        
+        for i in 0..<5 {
+            if let nextDate = calendar.date(byAdding: .day, value: i, to: Date()) {
+                let formattedDate = formatter.string(from: nextDate)
+                dates.append(formattedDate)
+            }
+        }
+        
+        return dates
     }
 }

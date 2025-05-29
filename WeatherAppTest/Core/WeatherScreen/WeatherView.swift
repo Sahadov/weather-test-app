@@ -17,18 +17,20 @@ struct WeatherView: View {
     }
     
     var body: some View {
-        VStack {
-            viewTitle
-            Spacer()
-            currentWeather
-            Spacer()
-            cityTextField
-            Spacer()
-            futureweather
-            Spacer()
+        ZStack {
+            AnimatedBackground()
+
+            VStack {
+                viewTitle
+                Spacer()
+                currentWeather
+                Spacer()
+                cityTextField
+                Spacer()
+                futureweather
+                Spacer()
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.blue)
     }
 }
 
@@ -62,6 +64,22 @@ extension WeatherView {
             .background(
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.white)
+            )
+            .overlay(
+                HStack {
+                    Spacer()
+                    if !searchCity.isEmpty {
+                        Image(systemName: "xmark.circle")
+                            .padding(.horizontal)
+                            .font(.title2)
+                            .foregroundStyle(Color.gray)
+                            .onTapGesture {
+                                withAnimation(.easeInOut) {
+                                    searchCity = ""
+                                }
+                            }
+                    }
+                }
             )
             .padding()
             .onSubmit {

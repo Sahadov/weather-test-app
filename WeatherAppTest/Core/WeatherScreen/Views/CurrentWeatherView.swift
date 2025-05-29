@@ -15,7 +15,7 @@ struct CurrentWeatherView: View {
     var body: some View {
         
         Text("\(String(format: "%.f", temperature)) ℃")
-            .foregroundStyle(Color.green)
+            .foregroundStyle(Color.orange)
             .fontWeight(.bold)
             .font(.custom("Helvetica Neue", size: 70))
         
